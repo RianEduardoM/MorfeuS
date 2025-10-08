@@ -1,0 +1,350 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+:root {
+  --bg-dark: #0a0a0a;
+  --bg-card: #141414;
+  --border-color: #2f2f2f;
+  --text-primary: #ededed;
+  --text-secondary: #858585;
+  --accent-color: #ffffff;
+  --font-family: "Inter", sans-serif;
+  --error-color: #ff5a5a;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+.form-container {
+  width: 100%;
+  max-width: 700px;
+}
+
+#form-wrapper {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  transform: rotate(-1.5deg);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  transition: opacity 0.5s ease;
+}
+
+.form-content {
+  transform: rotate(1.5deg);
+  padding: 2.5rem 3.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.progress-indicator {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 3rem;
+  width: 100%;
+}
+
+.step {
+  text-align: center;
+  color: var(--text-secondary);
+  transition: color 0.4s;
+  flex-shrink: 0;
+}
+
+.step.active .step-number {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
+
+.step.active .step-label {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.step.completed .step-number {
+  background-color: var(--accent-color);
+  color: var(--bg-dark);
+  border-color: var(--accent-color);
+}
+
+.step-number {
+  width: 36px;
+  height: 36px;
+  border: 2px solid var(--border-color);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 0.5rem auto;
+  font-weight: 600;
+  transition: all 0.4s;
+}
+
+.step-label {
+  font-size: 0.8rem;
+}
+
+.progress-bar-container {
+  display: block;
+  flex-grow: 1;
+  height: 2px;
+  background-color: var(--border-color);
+  margin: 1.1rem 0.5rem 0 0.5rem;
+}
+
+.progress-bar-fill {
+  width: 0%;
+  height: 100%;
+  background-color: var(--accent-color);
+  transition: width 0.4s ease-in-out;
+}
+
+.form-step {
+  display: none;
+}
+
+.form-step.active {
+  display: block;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.form-input {
+  padding: 1.5rem 1rem 0.5rem 1rem;
+  display: block;
+  width: 100%;
+  background-color: #222222;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  outline: none;
+  color: #d1d1d1;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+  position: relative;
+  z-index: 1;
+}
+
+.form-label {
+  position: absolute;
+  top: 1.1rem;
+  left: 1rem;
+  z-index: 0;
+  transform-origin: 0%;
+  color: var(--text-secondary);
+  transition: all 0.2s ease-out;
+  pointer-events: none;
+}
+
+.form-input:focus ~ .form-label,
+.form-input:not(:placeholder-shown) ~ .form-label {
+  transform: scale(0.8) translateY(-0.75rem);
+  left: 0.8rem;
+  background-color: #2e2e2e;
+  padding: 0 0.25rem;
+  z-index: 2;
+}
+
+.form-input:focus ~ .form-label {
+  color: var(--accent-color);
+}
+
+.form-input:focus {
+  border-color: var(--accent-color);
+}
+
+.static-label {
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  display: block;
+  font-weight: 500;
+}
+
+.radio-group,
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.radio-group label,
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.radio-group input,
+.checkbox-group input {
+  margin-right: 1rem;
+  width: 1.25em;
+  height: 1.25em;
+}
+
+.form-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-color);
+}
+
+button {
+  font-family: var(--font-family);
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.9rem 2rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-primary {
+  background-color: var(--accent-color);
+  color: var(--bg-dark);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+.error-message {
+  display: none;
+  color: var(--error-color);
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+.has-error .error-message {
+  display: block;
+}
+
+.has-error .form-input,
+.has-error label {
+  border-color: var(--error-color) !important;
+}
+
+.has-error .form-label,
+.has-error .static-label {
+  color: var(--error-color) !important;
+}
+
+.hidden {
+  display: none !important;
+}
+
+#success-animation {
+  text-align: center;
+  padding: 4rem 0;
+}
+
+.success-heading {
+  font-size: 1.75rem;
+}
+
+.morfeu-title {
+  font-size: 5rem;
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 15px 10px;
+    align-items: flex-start;
+  }
+  #form-wrapper,
+  .form-content {
+    transform: none;
+  }
+  #form-wrapper {
+    padding: 0;
+    border: none;
+    background: none;
+    box-shadow: none;
+  }
+  .form-content {
+    padding: 20px 10px;
+  }
+  .progress-indicator {
+    display: none;
+  }
+  .form-label {
+    position: static;
+    transform: none !important;
+    background: none !important;
+    padding: 0 !important;
+    margin-bottom: 12px;
+    display: block;
+    pointer-events: auto;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+  .form-input {
+    padding: 14px;
+    font-size: 16px;
+  }
+  .form-input:focus ~ .form-label,
+  .form-input:not(:placeholder-shown) ~ .form-label {
+    transform: none;
+  }
+  .form-navigation {
+    flex-direction: column-reverse;
+    gap: 12px;
+  }
+  .form-navigation button {
+    width: 100%;
+    padding: 15px;
+  }
+  .morfeu-title {
+    font-size: 3rem;
+  }
+}
+/* --- SISTEMA DE TRANSIÇÃO DE PÁGINA UNIFICADO --- */
+body.is-entering {
+  opacity: 0;
+  transform: translateY(10px);
+}
+body {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+body.is-exiting {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.4s ease-in, transform 0.4s ease-in;
+}
